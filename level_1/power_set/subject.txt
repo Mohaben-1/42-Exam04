@@ -1,0 +1,14 @@
+display all subsets of a set whose sum of its elements is equal to the first argument.
+The numbers of the set are from the second argument to the last.
+A subset must not be displayed a second time.
+
+exemple1)
+./a.out 5 2 3 | cat -e
+2 3$
+
+ex2)
+./a.out 12 5 7 4 3 2 | cat -e
+5 7$
+5 4 3$
+7 3 2$
+*/
