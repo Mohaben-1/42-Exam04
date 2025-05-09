@@ -55,14 +55,14 @@ void	find_min_removes(char *str, int *min, int index, int current_removal)
 			continue ;
 		}
 		saved = str[i];
-		str[i] = '_';
+		str[i] = ' ';
 		find_min_removes(str, min, i + 1, current_removal + 1);
 		str[i] = saved;
 		i++;
 	}
 }
 
-void	rip(char *str, int min, int index, int current_removal)
+void	generate_valide(char *str, int min, int index, int current_removal)
 {
 	char	saved;
 	int	i;
@@ -83,8 +83,8 @@ void	rip(char *str, int min, int index, int current_removal)
 			continue ;
 		}
 		saved = str[i];
-		str[i] = '_';
-		rip(str, min, i + 1, current_removal + 1);
+		str[i] = ' ';
+		generate_valide(str, min, i + 1, current_removal + 1);
 		str[i] = saved;
 		i++;
 	}
@@ -98,6 +98,6 @@ int	main(int ac, char **av)
 		return (puts("invalid arg"), 1);
 	min = ft_strlen(av[1]);
 	find_min_removes(av[1], &min, 0, 0);
-	rip(av[1], min, 0, 0);
+	generate_valide(av[1], min, 0, 0);
 	return (0);
 }
