@@ -1,14 +1,27 @@
-display all subsets of a set whose sum of its elements is equal to the first argument.
-The numbers of the set are from the second argument to the last.
-A subset must not be displayed a second time.
+Expected files : *.c *.h
+Allowed functions: atoi, fprintf, malloc, calloc, realloc, free, stdout, stderr, write
 
-exemple1)
-./a.out 5 2 3 | cat -e
-2 3$
+Write a program that will take as argument an integer n followed by a set s of integer. your program should display all the subsets of s whose sum of elements is n.
+The order of the lines is not important, but the order of the element in a subset is. You must not have any duplicates (eg: '1 2' and '2 1').
+in case of a malloc error your program will exit with the code 1.
+We will not test with invalid sets (for example '1 1 2')
 
-ex2)
-./a.out 12 5 7 4 3 2 | cat -e
+For example this should work :
+
+$>./powerset 3 1 0 2 4 5 3 | cat -e
+3$
+0 3$
+1 2$
+1 0 2$
+$>./powerset 12 5 2 1 8 4 3 7 11 | cat -e
+8 4$
+1 11$
+1 4 7$
+1 8 3$
+2 3 7$
 5 7$
 5 4 3$
-7 3 2$
-*/
+5 2 1 4$
+$>./powerset 0 1 -1 | cat -e
+1 -1$
+$> ./powerset 7 3 8 2 | cat -e
