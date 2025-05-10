@@ -4,12 +4,12 @@
 
 int	picoshell(char **cmds[])
 {
-	int	pid;
-	int	pipefd[2];
-	int	prev_fd;
-	int	status;
-	int	exit_code;
-	int	i;
+	pid_t	pid;
+	int		pipefd[2];
+	int		prev_fd;
+	int		status;
+	int		exit_code;
+	int		i;
 
 	prev_fd = -1;
 	exit_code = 0;
