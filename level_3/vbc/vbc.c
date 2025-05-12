@@ -1,5 +1,5 @@
 //this code is already given you just need to code the following functions found in vbc.c
-//parse_factor - parse_term - parse_expr
+//parse_number_or_group - parse_multiplication - parse_addition
 //and you have to modify the following functions unexpected - accept - eval_tree - main
 //read vbc.c and you will understand
 
@@ -72,24 +72,55 @@ int expect(char **s, char c)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-node    *parse_term(char **s);
-node    *parse_factor(char **s);
-node    *parse_expr(char **s);
+node    *parse_number_or_group(char **s);
+node    *parse_addition(char **s);
+node    *parse_multiplication(char **s);
 
 
-node    *parse_expr(char **s)
+node    *parse_number_or_group(char **s)
+{
+    node    *res;
+    node    tmp;
+
+    res = NULL;
+    if (**s == '(')
+    {
+        (*s)++;
+        res = parse_addition(s);
+        if (!res || **s != ')')
+        {
+            destroy_tree(res);
+            unexpected(**s);
+            return (NULL);
+        }
+        (*s)++;
+        return (res);
+    }
+    if (isdigit(**s))
+    {
+        tmp.type = VAL;
+        tmp.val = **s - '0';
+        res = new_node(tmp);
+        (*s)++;
+        return (res);
+    }
+    unexpected(**s);
+    return (NULL);
+}
+
+node    *parse_addition(char **s)
 {
     node    *left;
     node    *right;
     node    tmp;
 
-    left = parse_term(s);
+    left = parse_multiplication(s);
     if (!left)
         return (NULL);
     while (**s == '+')
     {
         (*s)++;
-        right = parse_term(s);
+        right = parse_multiplication(s);
         if (!right)
         {
             destroy_tree(left);
@@ -103,51 +134,20 @@ node    *parse_expr(char **s)
     return (left);
 }
 
-node    *parse_factor(char **s)
-{
-    node    tmp;
-    node    *node;
 
-    node = NULL;
-    if (**s == '(')
-    {
-        (*s)++;
-        node = parse_expr(s);
-        if (!node || **s != ')')
-        {
-            destroy_tree(node);
-            unexpected(**s);
-            return (NULL);
-        }
-        (*s)++;
-        return (node);
-    }
-    if (isdigit(**s))
-    {
-        
-        tmp.type = VAL;
-        tmp.val = **s - '0';
-        node = new_node(tmp);
-        (*s)++;
-        return (node);
-    }
-    unexpected(**s);
-    return (NULL);
-}
-
-node    *parse_term(char **s)
+node    *parse_multiplication(char **s)
 {
     node    *left;
     node    *right;
     node    tmp;
 
-    left = parse_factor(s);
+    left = parse_number_or_group(s);
     if (!left)
         return (NULL);
     while (**s == '*')
     {
         (*s)++;
-        right = parse_factor(s);
+        right = parse_number_or_group(s);
         if (!right)
         {
             destroy_tree(left);
@@ -173,13 +173,14 @@ int eval_tree(node *tree)
         case VAL:
             return (tree->val);
     }
+    return (0);
 }
 
 int main(int argc, char **argv)
 {
     if (argc != 2)
         return (1);
-    node *tree = parse_expr(&argv[1]);
+    node *tree = parse_addition(&argv[1]);
     if (!tree)
         return (1);
     printf("%d\n", eval_tree(tree));
