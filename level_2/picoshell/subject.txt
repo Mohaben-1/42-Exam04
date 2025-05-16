@@ -10,7 +10,7 @@ int    picoshell(char **cmds[]);
 The goal of this function is to execute a pipeline. It must execute each
 commands of cmds and connect the output of one to the input of the
 next command (just like a shell).
-
+e
 Cmds contains a null-terminated list of valid commands. Each rows
 of cmds are an argv array directly usable for a call to execvp. The first
 arguments of each command is the command name or path and can be passed
