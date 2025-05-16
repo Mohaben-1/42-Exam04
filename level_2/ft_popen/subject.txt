@@ -25,6 +25,17 @@ int main()
     return (0);
 }
 
+
+int	main() {
+	int	fd = ft_popen("ls", (char *const []){"ls", NULL}, 'r');
+	dup2(fd, 0);
+	fd = ft_popen("grep", (char *const []){"grep", "c", NULL}, 'r');
+	char	*line;
+	while ((line = get_next_line(fd)))
+		printf("%s", line);
+}
+
+
 Hints:
 Do not leak file descriptors!
 This exercise is inspired by the libc's popen().
