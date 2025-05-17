@@ -1,36 +1,7 @@
 #include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *s, int len)
-{
-	char	*dup;
-	int		i;
-
-	if (!s)
-		return (NULL);
-	dup = malloc(len);
-	if (!dup)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		dup[i] = s[i];
-		i++;
-	}
-	dup[i] = '\0';
-	return (dup);
-}
+#include <stdio.h>
+#include <string.h>
 
 void	ft_swap(char *c1, char *c2)
 {
@@ -60,26 +31,22 @@ void	ft_sort(char *s)
 	}
 }
 
-void	solve(char *copy, char *perm, int *used, int pos, int len)
+void	permutation(char *copy, int start_index, int end_index)
 {
 	int	i;
 
-	if (pos == len)
+	if (start_index == end_index)
 	{
-		perm[len] = '\0';
-		puts(perm);
+		printf("%s\n", copy);
 		return ;
 	}
-	i = 0;
-	while (i < len)
+	i = start_index;
+	while (i <= end_index)
 	{
-		if (!used[i])
-		{
-			used[i] = 1;
-			perm[pos] = copy[i];
-			solve(copy, perm, used, pos + 1, len);
-			used[i] = 0;
-		}
+		ft_sort(&copy[start_index]);
+		ft_swap(&copy[start_index], &copy[i]);
+		permutation(copy, start_index + 1, end_index);
+		ft_swap(&copy[start_index], &copy[i]);
 		i++;
 	}
 }
@@ -87,23 +54,15 @@ void	solve(char *copy, char *perm, int *used, int pos, int len)
 int	main(int ac, char **av)
 {
 	char	*copy;
-	char	*perm;
-	int		*used;
 	int		len;
-	int		i;
 
 	if (ac != 2)
-		return (1);
-	len = ft_strlen(av[1]);
-	copy = ft_strdup(av[1], len + 1);
-	perm = malloc(len + 1);
-	used = calloc(len, sizeof(int));
-	if (!copy || !used || !perm)
-		return (1);
-	ft_sort(copy);
-	solve(copy, perm, used, 0, len);
+		return (printf("invalid nbr of args\n"), 1);
+	copy = strdup(av[1]);
+	if (!copy)
+		return (printf("malloc failed\n"), 1);
+	len = strlen(copy);
+	permutation(copy, 0, len -1);
 	free(copy);
-	free(perm);
-	free(used);
 	return (0);
 }
