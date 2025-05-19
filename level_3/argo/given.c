@@ -1,7 +1,3 @@
-//this code is already given
-//you just need to code the following functions that you can find in argo.c
-//parse_int - parse_string - parse_map - parser - argo
-
 //note that if everything is perfect but still there is a segfault in the 9th test just replace <stdlib.h>
 //with <malloc.h> don't worry if it doesn't compile in your machine
 
