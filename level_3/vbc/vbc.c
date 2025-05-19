@@ -1,8 +1,3 @@
-//this code is already given you just need to code the following functions found in vbc.c
-//parse_number_or_group - parse_multiplication - parse_addition
-//and you have to modify the following functions unexpected - accept - eval_tree - main
-//read vbc.c and you will understand
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
