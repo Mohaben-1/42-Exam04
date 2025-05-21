@@ -10,12 +10,12 @@ void	print_set(int *power_set, int size)
 	i = 0;
 	while (i < size)
 	{
-		printf("%d", power_set[i]);
+		fprintf(stdout, "%d", power_set[i]);
 		if (i < size - 1)
-			printf(", ");
+			fprintf(stdout, " ");
 		i++;
 	}
-	printf("\n");
+	fprintf(stdout, "\n");
 }
 
 void	backtrack_powerset(int *set, int size, int target, int index, int *power_set, int size_powerset)
@@ -47,15 +47,15 @@ int	main(int ac, char **av)
 	int	i;
 
 	if (ac < 3)
-		return (printf("invalid nbr of args\n"), 1);
+		return (1);
 	target = atoi(av[1]);
 	size = ac - 2;
 	set = malloc(size * sizeof(int));
 	if (!set)
-		return (printf("malloc failed\n"), 1);
+		return (1);
 	power_set = malloc(size * sizeof(int));
 	if (!power_set)
-		return (printf("malloc failed\n"), 1);
+		return (1);
 	i = -1;
 	while (++i < size)
 		set[i] = atoi(av[i + 2]);

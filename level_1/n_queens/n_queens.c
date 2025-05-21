@@ -60,13 +60,13 @@ int	main(int ac, char **av)
 	int	n;
 
 	if (ac != 2)
-		return (fprintf(stdout, "invalid nbr of args\n"), 1);
+		return (1);
 	n = atoi(av[1]);
 	if (n <= 0)
 		return (0);
 	board = malloc(n * sizeof(int));
 	if (!board)
-		return (fprintf(stdout, "malloc failed\n"), 1);
+		return (1);
 	solve_queens(board, 0, n);
 	free(board);
 	return (0);

@@ -37,7 +37,7 @@ void	permutation(char *copy, int start_index, int end_index)
 
 	if (start_index == end_index)
 	{
-		printf("%s\n", copy);
+		puts(copy);
 		return ;
 	}
 	i = start_index;
@@ -57,11 +57,11 @@ int	main(int ac, char **av)
 	int		len;
 
 	if (ac != 2)
-		return (printf("invalid nbr of args\n"), 1);
-	copy = strdup(av[1]);
+		return (1);
+	copy = strdup(av[1]);// not allowed!
 	if (!copy)
-		return (printf("malloc failed\n"), 1);
-	len = strlen(copy);
+		return (1);
+	len = strlen(copy);// not allowed!
 	permutation(copy, 0, len -1);
 	free(copy);
 	return (0);

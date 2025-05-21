@@ -95,7 +95,7 @@ int	main(int ac, char **av)
 	int	min;
 
 	if (ac != 2 || !av[1][0])
-		return (puts("invalid arg"), 1);
+		return (1);
 	min = ft_strlen(av[1]);
 	find_min_removes(av[1], &min, 0, 0);
 	generate_valide(av[1], min, 0, 0);
