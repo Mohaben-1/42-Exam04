@@ -25,19 +25,19 @@ There are some functions in argo.c that might help you.
 
 Examples that should work:
 
-$echo -n '1' | ./argo /dev/stdin | cat -e
+$> echo -n '1' | ./argo /dev/stdin | cat -e
 1$
-$echo -n '"bonjour"' | ./argo /dev/stdin | cat -e
+$> echo -n '"bonjour"' | ./argo /dev/stdin | cat -e
 "bonjour"$
-$echo -n '"escape! \" "' | ./argo /dev/stdin | cat -e
+$> echo -n '"escape! \" "' | ./argo /dev/stdin | cat -e
 "escape! \" "$
-$echo -n '{"tomatoes":42,"potatoes":234}' | ./argo /dev/stdin | cat -e
+$> echo -n '{"tomatoes":42,"potatoes":234}' | ./argo /dev/stdin | cat -e
 {"tomatoes":42,"potatoes":234}$
-$echo -n '{"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}' | ./argo /dev/stdin | cat -e
+$> echo -n '{"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}' | ./argo /dev/stdin | cat -e
 {"recursion":{"recursion":{"recursion":{"recursion":"recursion"}}}}$
-$echo -n '"unfinished string' | ./argo /dev/stdin | cat -e
+$> echo -n '"unfinished string' | ./argo /dev/stdin | cat -e
 unexpected end of input$
-$echo -n '"unfinished string 2\"' | ./argo /dev/stdin | cat -e
+$> echo -n '"unfinished string 2\"' | ./argo /dev/stdin | cat -e
 unexpected end of input$
-$echo -n '{"no value?":}' | ./argo /dev/stdin | cat -e
+$> echo -n '{"no value?":}' | ./argo /dev/stdin | cat -e
 unexpected token '}'$
