@@ -67,6 +67,7 @@ int expect(char **s, char c)
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+int      check_balance(char *s);
 node    *parse_number_or_group(char **s);
 node    *parse_addition(char **s);
 node    *parse_multiplication(char **s);
@@ -157,6 +158,28 @@ node    *parse_multiplication(char **s)
 }
 
 
+int check_balance(char *s)
+{
+    int balance;
+    int i;
+
+    balance = 0;
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == '(')
+            balance++;
+        else if (s[i] == ')')
+        {
+            balance--;
+            if (balance < 0)
+                return (-1);
+        }
+        i++;
+    }
+    return (balance);
+}
+
 int eval_tree(node *tree)
 {
     switch (tree->type)
@@ -175,6 +198,8 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
         return (1);
+    if (check_balance(argv[1]) == -1)
+        return(printf("Unexpected token ')'"), 1);
     node *tree = parse_addition(&argv[1]);
     if (!tree)
         return (1);

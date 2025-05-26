@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <malloc.h>
+#include <malloc.h> // change this to <stdlib.h>
 #include <ctype.h>
 
 typedef struct node {
