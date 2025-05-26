@@ -1,11 +1,8 @@
-//note that if everything is perfect but still there is a segfault in the 9th test just replace <stdlib.h>
-//with <malloc.h> don't worry if it doesn't compile in your machine
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <ctype.h>
 #include <string.h>
-#include <malloc.h>
+#include <malloc.h> // change this to <stdlib.h>
 
 
 typedef struct	json {
