@@ -29,7 +29,7 @@ void	backtrack_powerset(int *set, int size, int target, int index, int *power_se
 		sum = 0;
 		while (i < size_powerset)
 			sum += power_set[i++];
-		if (sum == target && size_powerset > 0)
+		if (sum == target)
 			print_set(power_set, size_powerset);
 		return ;
 	}
