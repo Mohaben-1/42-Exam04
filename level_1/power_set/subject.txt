@@ -51,14 +51,15 @@ $> ./powerset 0 1 -1 | cat -e
 $
 1 -1$
 $> ./powerset 7 3 8 2 | cat -e
-$>
 
-$> ./powerset 100 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-
-$> ./powerset -1 1 2 3 4 5 -10
-
-$> ./powerset 0 -1 1 2 3 -2
-
-$> ./powerset 13 65 23 3 4 6 7 1 2
-
-$> ./powerset 10 0 1 2 3 4 5 6 7 8 9
+// Other tests:
+$> ./powerset 100 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 | cat -e
+...
+$> ./powerset -1 1 2 3 4 5 -10 | cat -e
+...
+$> ./powerset 0 -1 1 2 3 -2 | cat -e
+...
+$> ./powerset 13 65 23 3 4 6 7 1 2 | cat -e
+...
+$> ./powerset 10 0 1 2 3 4 5 6 7 8 9 | cat -e
+...
