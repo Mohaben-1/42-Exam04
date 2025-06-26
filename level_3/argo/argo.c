@@ -37,7 +37,6 @@ int		parser(json *dst, FILE *stream);
 int		parse_int(json *dst, FILE *stream);
 int		parse_string(json *dst, FILE *stream);
 int 	parse_map(json *dst, FILE *stream);
-void	skip_whitespace(FILE *stream);
 
 
 void	free_json(json j);
@@ -131,17 +130,10 @@ void	serialize(json j)
 
 
 
-void	skip_whitespace(FILE *stream)
-{
-	while (isspace(peek(stream)))
-		getc(stream);
-}
-
 int parser(json *dst, FILE *stream)
 {
 	int	c;
 
-	skip_whitespace(stream);
 	c = peek(stream);
 	if (c == '"')
 		return (parse_string(dst, stream));
@@ -218,21 +210,18 @@ int parse_map(json *dst, FILE *stream)
 	size = 0;
 	while (!accept(stream, '}'))
 	{
-		skip_whitespace(stream); 
 		items = realloc(items, sizeof(pair) * (size + 1));
 		if (parse_string(&key, stream) == -1)
 		{
 			free(items);
 			return (-1);
 		}
-		skip_whitespace(stream); 
 		if (!expect(stream, ':'))
 		{
 			free(key.string);
 			free(items);
 			return (-1);
 		}
-		skip_whitespace(stream); 
 		if (parser(&items[size].value, stream) == -1)
 		{
 			free(key.string);
@@ -241,7 +230,6 @@ int parse_map(json *dst, FILE *stream)
 		}
 		items[size].key = key.string;
 		size++;
-		skip_whitespace(stream); 
 		if (!accept(stream, ',') && peek(stream) != '}')
 		{
 			unexpected(stream);
