@@ -24,8 +24,9 @@ This repository contains my solutions for the 42cursus **Exam Rank 04**, which i
 - **Output**: All possible valid strings after minimal edits.
 
 ### ✅ `tsp` (Traveling Salesman Problem)
-- **Status**: **Not implemented**.
 - **Goal**: Solve the TSP using brute-force (recursively trying all possible paths).
+    Input: Distance matrix of the cities.
+- **Output**: Minimum cost path and its total distance.
 
 ---
 
