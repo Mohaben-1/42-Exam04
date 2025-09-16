@@ -31,12 +31,13 @@ typedef struct	pair {
 
 
 
-//Added
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 int		argo(json *dst, FILE *stream);
 int		parser(json *dst, FILE *stream);
 int		parse_int(json *dst, FILE *stream);
 int		parse_string(json *dst, FILE *stream);
 int 	parse_map(json *dst, FILE *stream);
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 void	free_json(json j);
@@ -129,7 +130,7 @@ void	serialize(json j)
 
 
 
-
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 int parser(json *dst, FILE *stream)
 {
 	int	c;
@@ -247,7 +248,7 @@ int argo(json *dst, FILE *stream)
 {
 	return (parser(dst, stream));
 }
-
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 int	main(int argc, char **argv)

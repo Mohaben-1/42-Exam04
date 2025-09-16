@@ -55,7 +55,7 @@ int	picoshell(char **cmds[])
 		}
 		i++;
 	}
-	while (wait(&status) != -1)
+	while (wait(&status) > 0)
 	{
 		if (WIFEXITED(status) && WEXITSTATUS(status) != 0)
 			exit_code = 1;

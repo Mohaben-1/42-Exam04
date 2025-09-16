@@ -23,7 +23,7 @@ This repository contains my solutions for the 42cursus **Exam Rank 04**, which i
 - **Goal**: From a string of parentheses, remove the **minimum number of invalid** parentheses to make the string balanced.
 - **Output**: All possible valid strings after minimal edits.
 
-### ❌ `tsp` (Traveling Salesman Problem)
+### ✅ `tsp` (Traveling Salesman Problem)
 - **Status**: **Not implemented**.
 - **Goal**: Solve the TSP using brute-force (recursively trying all possible paths).
 

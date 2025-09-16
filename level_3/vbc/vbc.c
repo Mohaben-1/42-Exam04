@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // change this from <malloc.h>
 #include <ctype.h>
 
 typedef struct node {
@@ -12,8 +12,6 @@ typedef struct node {
     struct node *l;
     struct node *r;
 }   node;
-
-
 
 node    *new_node(node n)
 {
@@ -37,14 +35,12 @@ void    destroy_tree(node *n)
 }
 
 
-
-
 void    unexpected(char c)
 {
     if (c)
         printf("Unexpected token '%c'\n", c);
     else
-        printf("Unexpected end of input\n"); //+++++++++++++++
+        printf("Unexpected end of input\n");
 }
 
 int accept(char **s, char c)
@@ -158,7 +154,7 @@ node    *parse_multiplication(char **s)
 }
 
 
-int check_balance(char *s)
+int check_balance(char *s) 
 {
     int balance;
     int i;
@@ -180,6 +176,9 @@ int check_balance(char *s)
     return (balance);
 }
 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
 int eval_tree(node *tree)
 {
     switch (tree->type)
@@ -198,9 +197,9 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
         return (1);
-    if (check_balance(argv[1]) == -1)
-        return(printf("Unexpected token ')'"), 1);
-    node *tree = parse_addition(&argv[1]);
+    if (check_balance(argv[1]) == -1) //++++++++++++++
+        return(printf("Unexpected token ')'"), 1); //++++++++++++++
+    node *tree = parse_addition(&argv[1]); //++++++++++++++
     if (!tree)
         return (1);
     printf("%d\n", eval_tree(tree));
